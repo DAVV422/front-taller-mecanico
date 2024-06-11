@@ -1,0 +1,88 @@
+<div class="flex-col rounded-lg bg-background px-8 pt-8 pb-3 sm:flex-row">
+  <div class="mb-1 flex items-center justify-between">
+    <div class="flex-col items-center">
+      <h3 class="text-md font-bold text-foreground">Emergencias</h3>
+      <span class="text-xs text-muted-foreground">Registrar Emergencia</span>
+    </div>
+  </div>
+
+  <div class="relative overflow-x-auto">
+    <form class="my-10 space-y-6">
+      <div class="text-center">
+        <h2 class="mb-1 text-3xl font-semibold text-foreground">Registrar Emergencia </h2>
+        <p class="text-sm text-muted-foreground">Datos de la emergencia</p>
+      </div>
+    
+      <div class="space-y-3 text-left">
+        <div class="relative">
+          <input type="text" id="name" class="peer block" placeholder=" " />
+          <label
+            for="name"
+            class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
+            Nombre de la emergencia
+          </label>
+        </div>
+        <div class="relative">
+          <input type="text" id="location" class="peer block" placeholder=" " />
+          <label
+            for="location"
+            class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
+            Ubicación de la emergencia
+          </label>
+        </div>
+        <div class="relative">
+          <input type="text" id="type" class="peer block" placeholder=" " />
+          <label
+            for="type"
+            class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
+            Tipo de emergencia
+          </label>        
+        </div>  
+        <div class="grid grid-cols-2 gap-2">          
+          <div class="relative col-span-1">
+            <input type="date" id="date" class="peer block" placeholder=" " />
+            <label
+              for="date"
+              class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
+              Fecha de emergencia
+            </label> 
+          </div>
+          <div class="relative">
+            <input type="text" id="hour" class="peer block" placeholder=" " />
+            <label
+              for="hour"
+              class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
+              Hora de la emergencia
+            </label>        
+          </div>          
+        </div>  
+        <div class="relative">
+          <input type="text" id="duration" class="peer block" placeholder=" " />
+          <label
+            for="duration"
+            class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
+            Duración de la emergencia
+          </label>
+        </div>        
+        <div class="relative">
+          <input type="text" id="message" class="peer block" placeholder=" " />
+          <label
+            for="message"
+            class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
+            Mensaje de Seguridad
+          </label>
+        </div>            
+          
+      </div>  
+    
+      <!-- Submit Button -->
+      <div>
+        <app-button full impact="bold" tone="primary" shape="rounded" size="medium">Registrar</app-button>
+      </div>
+    
+    </form>
+    
+  </div>
+</div>
+
+

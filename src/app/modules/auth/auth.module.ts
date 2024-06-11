@@ -5,6 +5,10 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { AuthRoutingModule } from './auth-routing.module';
 
 @NgModule({
-  imports: [AuthRoutingModule, HttpClientModule, AngularSvgIconModule.forRoot()],
+  imports: [
+    AuthRoutingModule, 
+    HttpClientModule, 
+    AngularSvgIconModule.forRoot()
+  ],      
 })
 export class AuthModule {}

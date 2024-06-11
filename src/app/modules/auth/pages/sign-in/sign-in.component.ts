@@ -4,6 +4,8 @@ import { Router, RouterLink } from '@angular/router';
 import { NgClass, NgIf } from '@angular/common';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
+import { catchError, of, tap } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -16,8 +18,13 @@ export class SignInComponent implements OnInit {
   form!: FormGroup;
   submitted = false;
   passwordTextType!: boolean;
+  disabled: boolean = false;
 
-  constructor(private readonly _formBuilder: FormBuilder, private readonly _router: Router) {}
+  constructor(
+    private readonly _formBuilder: FormBuilder, 
+    private readonly router: Router,    
+    private authService: AuthService,
+  ) {}
 
   onClick() {
     console.log('Button clicked');
@@ -39,14 +46,26 @@ export class SignInComponent implements OnInit {
   }
 
   onSubmit() {
-    this.submitted = true;
-    const { email, password } = this.form.value;
-
-    // stop here if form is invalid
     if (this.form.invalid) {
+      this.form.markAllAsTouched();
       return;
     }
-
-    this._router.navigate(['/']);
+    this.disabled = true;
+    const { email, password } = this.form.value;
+    
+    this.authService.login(email, password)
+      .pipe(        
+        tap(resp => localStorage.setItem('token', resp.data.accessToken)),
+        tap(resp => localStorage.setItem('user', JSON.stringify(resp.data.User))),
+        catchError(err => of(
+          // this.showSnackbar('Usuario o Contraseña Incorrecta', 'Cerrar')
+        )),
+        tap(() => this.disabled = false),
+      ).subscribe( (resp:any) => {
+        if (!!resp) {
+          this.router.navigate(['/sci']);
+          // this.showSnackbar('Sesión iniciada correctamente', 'Cerrar');
+        }
+      });
   }
 }

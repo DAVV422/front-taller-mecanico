@@ -3,15 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { NftComponent } from './pages/nft/nft.component';
 import { PodcastComponent } from './pages/podcast/podcast.component';
+import { AuthGuard } from '../auth/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    component: DashboardComponent,
+    component: DashboardComponent,    
     children: [
-      { path: '', redirectTo: 'nfts', pathMatch: 'full' },
-      { path: 'nfts', component: NftComponent },
-      { path: 'podcast', component: PodcastComponent },
+      { path: '', redirectTo: 'fru', pathMatch: 'full' },
+      { path: 'fru', component: NftComponent },
+      // { path: 'podcast', component: PodcastComponent },
       { path: '**', redirectTo: 'errors/404' },
     ],
   },

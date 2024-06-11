@@ -1,12 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout.component';
+import { PublicGuard } from '../auth/guards/public.guard';
 
 const routes: Routes = [
   {
     path: 'dashboard',
-    component: LayoutComponent,
+    component: LayoutComponent,    
     loadChildren: () => import('../dashboard/dashboard.module').then((m) => m.DashboardModule),
+  },
+  {
+    path: 'users',
+    component: LayoutComponent,    
+    loadChildren: () => import('../user/user.module').then((m) => m.UserModule),
+  },
+  {
+    path: 'emergencies',
+    component: LayoutComponent,    
+    loadChildren: () => import('../emergency/emergency.module').then((m) => m.EmergencyModule),
   },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: '**', redirectTo: 'error/404' },

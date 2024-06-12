@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Personal } from '../../interfaces/user.interface';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-personal-item',
+  selector: '[personal-table-item]',
   standalone: true,
-  imports: [],
+  imports: [AngularSvgIconModule, CurrencyPipe],
   templateUrl: './personal-item.component.html',
   styleUrl: './personal-item.component.scss'
 })
 export class PersonalItemComponent {
-
+  @Input() auction = <Personal>{};
 }

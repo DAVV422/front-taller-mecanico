@@ -93,7 +93,7 @@ export class SignInComponent implements OnInit {
       }).valueChanges.subscribe(( result: any) => {
         if(result.data.login != null){
           localStorage.setItem('usuario', result.data.login.id);     
-          this.router.navigate(['/sci'])     
+          this.router.navigate(['/taller'])     
         }
       });
     

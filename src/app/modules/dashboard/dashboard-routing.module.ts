@@ -10,8 +10,8 @@ const routes: Routes = [
     path: '',
     component: DashboardComponent,    
     children: [
-      { path: '', redirectTo: 'fru', pathMatch: 'full' },
-      { path: 'fru', component: NftComponent },
+      { path: '', redirectTo: 'inicio', pathMatch: 'full' },
+      { path: 'inicio', component: NftComponent },
       // { path: 'podcast', component: PodcastComponent },
       { path: '**', redirectTo: 'errors/404' },
     ],

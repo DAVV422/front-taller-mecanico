@@ -5,7 +5,6 @@ import { Personal } from '../../interfaces/user.interface';
 import { NgFor } from '@angular/common';
 import { PersonalItemComponent } from '../personal-item/personal-item.component';
 
-
 const getAllPersonal = gql`
     query getAllPersonal {
       getAllPersonal {

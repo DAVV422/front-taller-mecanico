@@ -14,3 +14,11 @@ export interface Personal {
   direccion: string,
   fechaNacimiento: string
 }
+
+export interface Cliente {
+  id: string,
+  nombre: string,
+  apellido: string,
+  celular: string,
+  nit: string,  
+}

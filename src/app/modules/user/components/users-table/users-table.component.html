@@ -1,8 +1,8 @@
 <div class="flex-col rounded-lg bg-background px-8 py-8 sm:flex-row">
   <div class="mb-4 flex items-center justify-between">
     <div class="flex-col items-center">
-      <h3 class="text-md font-bold text-foreground">Personal</h3>
-      <span class="text-xs text-muted-foreground">Usuarios</span>
+      <h3 class="text-md font-bold text-foreground">Usuarios</h3>
+      <span class="text-xs text-muted-foreground">Taller</span>
     </div>
     <button (click)="newUser()"
       class="flex-none rounded-md bg-card px-4 py-2.5 text-xs font-semibold text-muted-foreground hover:bg-muted hover:text-foreground">
@@ -15,11 +15,10 @@
       <!--Table head-->
       <thead class="text-xs uppercase text-muted-foreground">
         <tr>          
-          <th class="py-3 text-left">Nombre</th>
-          <th class="py-3 text-left">Apellido</th>          
-          <th class="py-3 text-left">Grado</th>
-          <th class="py-3 text-left">Celular</th>
-          <th class="py-3 text-left">Correo</th>          
+          <th class="py-3 text-left">Nombre de Usuario</th>
+          <th class="py-3 text-left">Email</th>          
+          <th class="py-3 text-left">Tipo</th>  
+          <th class="py-3 text-right px-2">Acciones</th>                
         </tr>
       </thead>
       <!--end Table head-->

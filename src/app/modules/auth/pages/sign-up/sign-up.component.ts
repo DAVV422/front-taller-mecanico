@@ -69,7 +69,7 @@ export class SignUpComponent implements OnInit {
         tap(() => this.disabled = false),
       ).subscribe( (resp:any) => {
         if (resp) {
-          this.router.navigate(['/sci/users']);
+          this.router.navigate(['/taller/users']);
           // this.showSnackbar('Sesión iniciada correctamente', 'Cerrar');
         }
       });

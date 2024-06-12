@@ -1,6 +1,6 @@
 {
-  "name": "front-emergy",
-  "displayName": "Emergy AI SCI",
+  "name": "front-taller",
+  "displayName": "Mecanic Taller",
   "version": "0.5.0",
   "description": "Angular & Tailwind CSS Admin Dashboard Starter Kit, Free and Open Source",
   "homepage-base": "https://github.com/luciano-work/angular-tailwind#readme",
@@ -45,10 +45,13 @@
     "@tailwindcss/typography": "^0.5.4",
     "angular-svg-icon": "^13.0.0",
     "apexcharts": "^3.35.3",
+    "apollo-angular": "^7.0.2",
     "ng-apexcharts": "^1.7.1",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.14.2"
+    "zone.js": "~0.14.2",
+    "@apollo/client": "^3.0.0",
+    "graphql": "^16"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.2.0",

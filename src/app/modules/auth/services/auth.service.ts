@@ -5,6 +5,7 @@ import { Observable, catchError, map, of } from 'rxjs';
 import { Login, Usuario } from '../interfaces/response/login.interface';
 import { Router } from '@angular/router';
 import { UsuarioRequest } from '../interfaces/request/usuario.interface';
+import { Apollo } from 'apollo-angular';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private readonly apollo: Apollo
   ) { }
 
   login(email: string, password: string): Observable<Login> {

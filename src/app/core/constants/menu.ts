@@ -26,6 +26,11 @@ export class Menu {
           label: 'Clientes',
           route: '/taller/users/clientes',          
         },
+        {
+          icon: 'assets/icons/heroicons/outline/lock-closed.svg',
+          label: 'Citas',
+          route: '/taller/citas',          
+        },
       ],
     },
     {
@@ -60,7 +65,10 @@ export class Menu {
         {
           icon: 'assets/icons/heroicons/outline/folder.svg',
           label: 'Vehiculos',
-          route: '/taller/vehiculos',
+          children: [
+            { label: 'Vehiculos', route: '/taller/vehiculos/' },
+            { label: 'Marcas', route: '/taller/vehiculos/marcas' },            
+          ],  
         },
         {
           icon: 'assets/icons/heroicons/outline/folder.svg',

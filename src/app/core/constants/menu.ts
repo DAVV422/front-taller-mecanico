@@ -72,6 +72,21 @@ export class Menu {
         },
         {
           icon: 'assets/icons/heroicons/outline/folder.svg',
+          label: 'proveedor',
+          route: '/taller/proveedor',
+        },
+        {
+          icon: 'assets/icons/heroicons/outline/folder.svg',
+          label: 'salida',
+          route: '/taller/salida',
+        },
+        {
+          icon: 'assets/icons/heroicons/outline/folder.svg',
+          label: 'detallesalida',
+          route: '/taller/detallesalida',
+        },
+        {
+          icon: 'assets/icons/heroicons/outline/folder.svg',
           label: 'Inventario',
           children: [
             { label: 'Entradas Producto', route: '/taller/inventario/entradas' },

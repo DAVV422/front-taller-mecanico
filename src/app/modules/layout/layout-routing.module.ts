@@ -54,6 +54,23 @@ const routes: Routes = [
     component: LayoutComponent,    
     loadChildren: () => import('../vehiculos/vehiculos.module').then((m) => m.VehiculosModule),
   },
+
+  {
+    path: 'proveedor',
+    component: LayoutComponent,    
+    loadChildren: () => import('../proveedor/proveedor.module').then((m) => m.ProveedorModule),
+  },
+  {
+    path: 'salida',
+    component: LayoutComponent,    
+    loadChildren: () => import('../salida/salida.module').then((m) => m.SalidaModule),
+  },
+  {
+    path: 'detallesalida',
+    component: LayoutComponent,    
+    loadChildren: () => import('../detalle-salida/detalle-salida.module').then((m) => m.DetalleSalidaModule),
+   //  loadChildren()=>import('../detalle-salida/detalle-salida.module').then((m)=>m.DetalleSalidaModule),
+  },
   {
     path: 'pagos',
     component: LayoutComponent,    

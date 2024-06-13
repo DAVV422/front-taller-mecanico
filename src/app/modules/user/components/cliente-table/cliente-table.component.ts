@@ -4,7 +4,7 @@ import { Apollo, gql } from 'apollo-angular';
 import { Cliente } from '../../interfaces/user.interface';
 import { NgFor } from '@angular/common';
 import { ClienteItemComponent } from '../cliente-item/cliente-item.component';
-import { GET_ALL_CLIENTES } from 'src/app/core/constants/query';
+import { GET_ALL_CLIENTES } from '../../../../core/constants/query';
 
 @Component({
   selector: '[cliente-table]',

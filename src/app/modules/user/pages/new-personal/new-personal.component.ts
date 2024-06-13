@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Router, RouterLink } from '@angular/router';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { Apollo, gql } from 'apollo-angular';
-import { ButtonComponent } from 'src/app/shared/components/button/button.component';
+import { ButtonComponent } from '../../../../shared/components/button/button.component';
 
 const createPersonal = gql`
       mutation createPersonal(

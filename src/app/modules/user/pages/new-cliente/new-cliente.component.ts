@@ -4,8 +4,8 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Router, RouterLink } from '@angular/router';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { Apollo } from 'apollo-angular';
-import { CREATE_CLIENTE } from 'src/app/core/constants/mutation';
-import { ButtonComponent } from 'src/app/shared/components/button/button.component';
+import { CREATE_CLIENTE } from '../../../../core/constants/mutation';
+import { ButtonComponent } from '../../../../shared/components/button/button.component';
 
 @Component({
   selector: 'app-new-cliente',

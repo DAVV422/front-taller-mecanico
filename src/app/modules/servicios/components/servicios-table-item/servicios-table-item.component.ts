@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Servicio } from '../../interfaces/servicio.interface';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-servicios-table-item',
+  selector: '[servicios-table-item]',
   standalone: true,
-  imports: [],
+  imports: [AngularSvgIconModule, CurrencyPipe],
   templateUrl: './servicios-table-item.component.html',
   styleUrl: './servicios-table-item.component.scss'
 })
 export class ServiciosTableItemComponent {
-
+  @Input() auction = <Servicio>{};
 }

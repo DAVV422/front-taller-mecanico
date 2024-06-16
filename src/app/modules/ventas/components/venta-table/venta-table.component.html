@@ -1,1 +1,38 @@
-<p>venta-table works!</p>
+<div class="flex-col rounded-lg bg-background px-8 py-8 sm:flex-row">
+    <div class="mb-4 flex items-center justify-between">
+      <div class="flex-col items-center">
+        <h3 class="text-md font-bold text-foreground">Ventas</h3>
+        <span class="text-xs text-muted-foreground">Taller</span>
+      </div>
+      <button (click)="newVenta()"
+        class="flex-none rounded-md bg-card px-4 py-2.5 text-xs font-semibold text-muted-foreground hover:bg-muted hover:text-foreground">
+        Nuevo
+      </button>
+    </div>
+  
+    <div class="relative overflow-x-auto">
+      <table class="w-full table-auto">
+        <!--Table head-->
+        <thead class="text-xs uppercase text-muted-foreground">
+          <tr>          
+            <th class="py-3 text-left">Fecha</th>
+            <th class="py-3 text-left">Total</th>          
+            <th class="py-3 text-left">Subtotal</th>            
+            <th class="py-3 text-left">Saldo</th>            
+            <th class="py-3 text-left">Codigo de Seguimiento</th>            
+            <th class="py-3 text-center px-2">Acciones</th>                
+          </tr>
+        </thead>
+        <!--end Table head-->
+        <!--Table body-->
+        <tbody>
+          <tr
+            *ngFor="let auction of activeAuction"
+            [auction]="auction"
+            ventas-table-item
+            class="border-b border-dashed border-border hover:bg-card"></tr>
+        </tbody>
+        <!--end::Table body-->
+      </table>
+    </div>
+  </div>

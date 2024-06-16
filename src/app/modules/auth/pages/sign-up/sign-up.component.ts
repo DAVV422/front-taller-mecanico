@@ -6,7 +6,11 @@ import { ButtonComponent } from 'src/app/shared/components/button/button.compone
 import { UserService } from '../../services/user.service';
 import { NgClass, NgIf } from '@angular/common';
 import { catchError, of, tap } from 'rxjs';
+import { Apollo, gql } from 'apollo-angular';
 
+const createUser = gql`
+
+`
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -24,6 +28,7 @@ export class SignUpComponent implements OnInit {
     private readonly _formBuilder: FormBuilder, 
     private readonly router: Router,    
     private userService: UserService,
+    private apollo: Apollo
   ) {}
 
   onClick() {
@@ -56,22 +61,10 @@ export class SignUpComponent implements OnInit {
       return;
     }
     this.disabled = true;
-    const { email, password, name, lastName, cellphone, birthdate, grade } = this.form.value;
-    
-    this.userService.create({ email, last_name:lastName, name, birthdate, grade, cellphone, password, role: 'basic' })
-      .pipe(
-        tap(resp => console.log(resp)),
-        // tap(resp => localStorage.setItem('token', resp.data.accessToken)),
-        // tap(resp => localStorage.setItem('user', JSON.stringify(resp.data.User))),
-        catchError(err => of(
-          // this.showSnackbar('Usuario o Contraseña Incorrecta', 'Cerrar')
-        )),
-        tap(() => this.disabled = false),
-      ).subscribe( (resp:any) => {
-        if (resp) {
-          this.router.navigate(['/taller/users']);
-          // this.showSnackbar('Sesión iniciada correctamente', 'Cerrar');
-        }
-      });
+    const { email, password, name, lastName, cellphone, birthdate, grade } = this.form.value;       
+  }
+
+  cancelar(){
+    this.router.navigate(['/taller/users']);
   }
 }

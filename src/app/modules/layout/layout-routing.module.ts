@@ -15,6 +15,11 @@ const routes: Routes = [
     loadChildren: () => import('../user/user.module').then((m) => m.UserModule),
   },
   {
+    path: 'citas',
+    component: LayoutComponent,    
+    loadChildren: () => import('../citas/cita.module').then((m) => m.CitaModule),
+  },
+  {
     path: 'inventario',
     component: LayoutComponent,    
     loadChildren: () => import('../inventario/inventario.module').then((m) => m.InventarioModule),

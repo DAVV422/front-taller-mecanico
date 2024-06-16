@@ -2,23 +2,14 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Apollo, gql } from 'apollo-angular';
 import { Cliente } from '../../interfaces/user.interface';
+import { NgFor } from '@angular/common';
+import { ClienteItemComponent } from '../cliente-item/cliente-item.component';
+import { GET_ALL_CLIENTES } from '../../../../core/constants/query';
 
-const getAllClientes = gql`
-    query getAllCliente {
-      getAllCliente {
-        apellido,
-        celular,        
-        nit,        
-        id,
-        nombre,
-        usuarioId
-      }
-    }
-  `;
 @Component({
-  selector: 'app-cliente-table',
+  selector: '[cliente-table]',
   standalone: true,
-  imports: [],
+  imports: [NgFor, ClienteItemComponent],
   templateUrl: './cliente-table.component.html',
   styleUrl: './cliente-table.component.scss'
 })
@@ -32,10 +23,10 @@ export class ClienteTableComponent {
   ) {        
     this.apollo
       .watchQuery({
-        query: getAllClientes,        
+        query: GET_ALL_CLIENTES,        
       }).valueChanges.subscribe(( result: any) => {
-        if(result.data.getAllCliente != null){
-          this.activeAuction = result.data.getAllCliente;
+        if(result.data.getAllClientes != null){
+          this.activeAuction = result.data.getAllClientes;
         }
       });    
     
@@ -43,7 +34,7 @@ export class ClienteTableComponent {
 
   ngOnInit(): void {}
 
-  newPersonal(): void {
+  newCliente(): void {
     this.router.navigate(['/taller/users/clientes/new']);
   }
 }

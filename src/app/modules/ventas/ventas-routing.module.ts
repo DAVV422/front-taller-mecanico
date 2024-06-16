@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { VentasComponent } from './ventas.component';
-import { ListCompraComponent } from '../compras/pages/list-compra/list-compra.component';
-import { NewCompraComponent } from '../compras/pages/new-compra/new-compra.component';
-import { EditCompraComponent } from '../compras/pages/edit-compra/edit-compra.component';
 import { ShowVentaComponent } from './pages/show-venta/show-venta.component';
+import { ListVentaComponent } from './pages/list-venta/list-venta.component';
+import { NewVentaComponent } from './pages/new-venta/new-venta.component';
+import { EditVentaComponent } from './pages/edit-venta/edit-venta.component';
 
 const routes: Routes = [
   {
@@ -12,9 +12,9 @@ const routes: Routes = [
     component: VentasComponent,    
     children: [
       { path: '', redirectTo: 'list', pathMatch: 'full' },
-      { path: 'list', component: ListCompraComponent },
-      { path: 'new', component: NewCompraComponent },
-      { path: 'edit', component: EditCompraComponent },
+      { path: 'list', component: ListVentaComponent },
+      { path: 'new', component: NewVentaComponent },
+      { path: 'edit', component: EditVentaComponent },
       { path: 'show', component: ShowVentaComponent },
       { path: '**', redirectTo: 'errors/404' },
     ],

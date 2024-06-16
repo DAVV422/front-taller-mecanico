@@ -1,90 +1,49 @@
 <div class="flex h-screen w-full justify-center">
   <form class="my-10 space-y-6" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="text-center">
-      <h2 class="mb-1 text-3xl font-semibold text-foreground">Registrar Usuario <span class="text-primary"></span></h2>
-      <p class="text-sm text-muted-foreground">Emergy AI SCI</p>
+      <h2 class="mb-1 text-3xl font-semibold text-foreground">Registrar Personal<span class="text-primary"></span></h2>
+      <p class="text-sm text-muted-foreground">Mecanic Taller</p>
     </div>
 
     <div class="space-y-3 text-left">
       <div class="relative">
-        <input type="text" id="email" class="peer block" placeholder=" " formControlName="email"/>
+        <input type="text" id="nombre" class="peer block" placeholder=" " formControlName="nombre"/>
         <label
-          for="email"
-          class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
-          Email
-        </label>
-      </div>
-      <div class="relative">
-        <input type="text" id="name" class="peer block" placeholder=" " formControlName="name"/>
-        <label
-          for="name"
+          for="nombre"
           class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
           Nombre
         </label>
       </div>
       <div class="relative">
-        <input type="text" id="lastName" class="peer block" placeholder=" " formControlName="lastName"/>
+        <input type="text" id="apellido" class="peer block" placeholder=" " formControlName="apellido"/>
         <label
-          for="lastName"
+          for="apellido"
           class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
           Apellido
         </label>
       </div>
       <div class="relative">
-        <input type="text" id="cellphone" class="peer block" placeholder=" " formControlName="cellphone"/>
+        <input type="text" id="celular" class="peer block" placeholder=" " formControlName="celular"/>
         <label
-          for="cellphone"
+          for="celular"
           class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
-          Nro. Celular
+          Celular
         </label>
       </div>
       <div class="relative">
-        <input type="date" id="birthdate" class="peer block" placeholder=" " formControlName="birthdate"/>
+        <input type="text" id="nit" class="peer block" placeholder=" " formControlName="nit"/>
         <label
-          for="birthdate"
+          for="nit"
           class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
-          Fecha de Nacimiento
-        </label>
-      </div>
-      <div class="relative">
-        <input type="text" id="grade" class="peer block" placeholder=" " formControlName="grade"/>
-        <label
-          for="grade"
-          class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
-          Grado Institucional
-        </label>
-      </div>
-      <div class="relative">
-        <input [type]="passwordTextType ? 'text' : 'password'" id="password" class="peer block" placeholder=" " formControlName="password" />
-        <label
-          for="password"
-          class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
-          Password
-        </label>
-        <span class="absolute top-2.5 right-5 cursor-pointer text-muted-foreground" (click)="togglePasswordTextType()">
-          <svg-icon
-            [src]="
-              !passwordTextType
-                ? 'assets/icons/heroicons/outline/eye-off.svg'
-                : 'assets/icons/heroicons/outline/eye.svg'
-            "
-            [svgClass]="'h-5 w-5'">
-          </svg-icon>
-        </span>
-      </div>
-      <div class="relative">
-        <input type="password" id="confirm-password" class="peer block" placeholder=" " />
-        <label
-          for="confirm-password"
-          class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
-          Confirm Password
+          NIT
         </label>
       </div>
     </div>
 
     <!-- Submit Button -->
-    <div>
-      <app-button full impact="bold" tone="primary" shape="rounded" size="medium">Registrar</app-button>
+    <div class="flex flex-row justify-around w-full">
+      <app-button class="px-1" impact="bold" (click)="cancelar()" shape="rounded" size="medium">Cancelar</app-button>
+      <app-button class="px-1" impact="bold" tone="primary" shape="rounded" size="medium">Registrar</app-button>
     </div>
   </form>
 </div>

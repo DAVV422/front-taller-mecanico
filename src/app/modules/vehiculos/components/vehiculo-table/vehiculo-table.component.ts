@@ -19,7 +19,10 @@ export class VehiculoTableComponent {
   constructor(
     private router: Router,
     private readonly apollo: Apollo
-  ) {        
+  ) {                
+  }
+
+  ngOnInit(): void {
     this.apollo
       .watchQuery({
         query: GET_ALL_VEHICULOS,        
@@ -28,10 +31,7 @@ export class VehiculoTableComponent {
           this.activeAuction = result.data.getAllVehiculos;
         }
       });    
-    
   }
-
-  ngOnInit(): void {}
 
   newVehiculo(): void {
     this.router.navigate(['/taller/vehiculos/new']);

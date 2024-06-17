@@ -2,24 +2,21 @@
     <div class="flex items-center">
       <!-- <img [src]="" class="mr-2 h-10 w-10 flex-none rounded-sm" alt="" /> -->
       <div class="flex flex-col justify-items-start">
-        <a href="#" class="mb-1 text-sm font-semibold text-foreground">{{auction.matricula}}</a>
+        <a href="#" class="mb-1 text-sm font-semibold text-foreground">{{auctionProducto.montoTotal}}</a>
         <!-- <span class="text-xs font-semibold text-muted-foreground/50">creator</span> -->
       </div>
     </div>
   </td>
   <td class="py-2 pl-2 text-left">
-    <span class="text-sm font-semibold text-muted-foreground"> {{auction.descripcion}}</span>
+    <span class="text-sm font-semibold text-muted-foreground"> {{auctionProducto.productoId}}</span>
   </td>
   <td class="py-2 pl-2 text-left">
-    <span class="text-sm font-semibold text-muted-foreground">{{auction.color}}</span>
-  </td>
-  <td class="py-2 pl-2 text-left">
-    <span class="text-sm font-semibold text-muted-foreground">{{auction.modelo}}</span>
-  </td>
+    <span class="text-sm font-semibold text-muted-foreground">{{auctionProducto.precioUnitario}}</span>
+  </td>  
   
   <td class="py-2 pl-2 text-right">  
     <div class="flex justify-center mr-1">
-      <button (click)="eliminar(auction.id)"
+      <button
         href="#"
         class="flex h-7 w-7 items-center justify-center rounded-md bg-card text-muted-foreground hover:bg-muted hover:text-foreground">
         <svg-icon src="assets/icons/heroicons/outline/icons8-eliminar.svg" [svgClass]="'h-5 w-5'"> </svg-icon>

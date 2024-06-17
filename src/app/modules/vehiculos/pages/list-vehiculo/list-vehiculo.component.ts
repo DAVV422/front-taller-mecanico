@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { VehiculoHeaderComponent } from '../../components/vehiculo-header/vehiculo-header.component';
 import { VehiculoTableComponent } from '../../components/vehiculo-table/vehiculo-table.component';
 import { VehiculoTableItemComponent } from '../../components/vehiculo-table-item/vehiculo-table-item.component';
@@ -14,6 +14,10 @@ import { VehiculoTableItemComponent } from '../../components/vehiculo-table-item
   templateUrl: './list-vehiculo.component.html',
   styleUrl: './list-vehiculo.component.scss'
 })
-export class ListVehiculoComponent {
+export class ListVehiculoComponent implements  OnInit,OnDestroy {
+  ngOnDestroy(): void {    
+  }
+  ngOnInit(): void {  
+  }
 
 }

@@ -26,14 +26,10 @@ export class NewMarcaComponent {
     private readonly apollo: Apollo
   ) {}
 
-  onClick() {
-    console.log('Button clicked');
-  }
-
   ngOnInit(): void {
     this.form = this._formBuilder.group({
       nombre: ['', [Validators.required]],
-      pocentaje: ['', [Validators.required]]       
+      porcentaje: ['', [Validators.required]]       
     });
   }
 

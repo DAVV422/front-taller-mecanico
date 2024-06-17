@@ -64,12 +64,11 @@ export class NewVehiculoComponent {
     }).subscribe(
       ({data}) => {
         if( data ) {
-          this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-          this.router.onSameUrlNavigation = 'reload';
-          this.router.navigate(['/taller/vehiculos']);
+          console.log("Vehiculo Creado");
         }        
       }
     );
+    this.router.navigate(['/taller/vehiculos']);
   }
 
   cancelar(){

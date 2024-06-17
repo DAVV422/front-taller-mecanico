@@ -3,52 +3,69 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AngularSvgIconModule } from 'angular-svg-icon';
-import { Apollo } from 'apollo-angular';
-import { CREATE_CITA } from 'src/app/core/constants/mutation';
-import { ALL_USUARIOS, GET_ALL_PERSONAL } from 'src/app/core/constants/query';
-import { Personal, User } from 'src/app/modules/user/interfaces/user.interface';
+import { Apollo, gql } from 'apollo-angular';
+import { GET_ALL_PRODUCTO } from 'src/app/core/constants/query';
+import { Producto } from 'src/app/modules/inteface/modelos';
 import { ButtonComponent } from 'src/app/shared/components/button/button.component';
+const createEntrada = gql`
+      mutation createEntrada(
+        $fecha:String!, 
+        $motivo:String!, 
+        $hora:String!, 
+        $productoId:String!, 	
+        $cantidad:Int!, 	
+      ) {
+      createEntrada(
+        fecha:$fecha,
+        motivo:$motivo,
+        hora:$hora,
+        productoId:$productoId,
+        cantidad:$cantidad,
+      ){
+        id,
+        fecha,
+        motivo,
+        hora,
+        productoId,
+        cantidad
+      }
+    }
+  `;
+
 
 @Component({
-  selector: 'app-new-cita',
+  selector: 'app-new-entrada',
   standalone: true,
   imports: [FormsModule, ReactiveFormsModule, RouterLink, NgClass, NgIf, AngularSvgIconModule, ButtonComponent, NgFor],
-
-  templateUrl: './new-cita.component.html',
-  styleUrl: './new-cita.component.scss'
+  templateUrl: './new-entrada.component.html',
+  styleUrl: './new-entrada.component.scss'
 })
-export class NewCitaComponent {
+export class NewEntradaComponent {
   form!: FormGroup;
   submitted = false;
   passwordTextType!: boolean;
   disabled: boolean = false;
-  public usuarios: User[] = []
-  public personal: Personal[] = []
-
+  public productos: Producto[] = []
+  
   constructor(
     private readonly _formBuilder: FormBuilder,
     private readonly router: Router,
     private readonly apollo: Apollo
   ) {
+
     this.apollo.watchQuery({
-      query: ALL_USUARIOS
+      query: GET_ALL_PRODUCTO,
     }).valueChanges.subscribe(( result: any) => {
       console.log(result)
-      if(result.data.allUsuarios != null){
-        this.usuarios = result.data.allUsuarios;  
-      }
-    }); 
-    this.apollo.watchQuery({
-      query: GET_ALL_PERSONAL,
-    }).valueChanges.subscribe(( result: any) => {
-      console.log(result)
-      if(result.data.getAllPersonal != null){
-        this.personal = result.data.getAllPersonal;  
-        console.log("cargando personal "+this.personal)
+      if(result.data.getAllProducto != null){
+        this.productos = result.data.getAllProducto;  
+        console.log("cargando productos "+this.productos)
       }
     });
+
   }
 
+  
   onClick() {
     console.log('Button clicked');
   }
@@ -56,10 +73,10 @@ export class NewCitaComponent {
   ngOnInit(): void {
     this.form = this._formBuilder.group({
       fecha: ['', [Validators.required]],
+      motivo: ['', [Validators.required]],
       hora: ['', [Validators.required]],
-      estado: ['', [Validators.required]],
-      usuarioId: ['', [Validators.required]],
-      personalId: ['', [Validators.required]],
+      cantidad: ['', [Validators.required]],   
+      productoId: ['', [Validators.required]],
     });
   }
 
@@ -73,20 +90,22 @@ export class NewCitaComponent {
       return;
     }
     this.disabled = true;
-    const { fecha, hora, estado, usuarioId, personalId } = this.form.value;
+    const { fecha,motivo,hora,productoId,cantidad} = this.form.value;
     this.apollo.mutate({ 
-      mutation: CREATE_CITA,
-      variables: { fecha, hora, estado, usuarioId, personalId }
+      mutation: createEntrada,
+      variables: {fecha,motivo,hora,productoId,cantidad}
     }).subscribe(
       ({data}) => {
         if(data) {
-          this.router.navigate(['/taller/citas']);
+          this.router.navigate(['/taller/entrada']);
         }        
       }
     );
+
   }
 
   cancelar(){
-    this.router.navigate(['/taller/citas']);
+    this.router.navigate(['/taller/entrada']);
   }
+
 }

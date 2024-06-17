@@ -3,23 +3,25 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AngularSvgIconModule } from 'angular-svg-icon';
-import { Apollo, gql } from 'apollo-angular';
+import { Apollo,gql } from 'apollo-angular';
 import { GET_ALL_PRODUCTO } from 'src/app/core/constants/query';
 import { Producto } from 'src/app/modules/inteface/modelos';
 import { ButtonComponent } from 'src/app/shared/components/button/button.component';
-const createSalida = gql`
-      mutation createSalida(
+
+
+const createEntradaManual = gql`
+      mutation createSalidaManual(
         $fecha:String!, 
         $motivo:String!, 
         $hora:String!, 
-        $productoId:String!,
-        $cantidad:Int!,  	
+        $productoId:String!, 	
+        $cantidad:Int!, 	
       ) {
-      createSalida(
+      createSalidaManual(
         fecha:$fecha,
         motivo:$motivo,
         hora:$hora,
-        productoId:$productoId,        
+        productoId:$productoId,
         cantidad:$cantidad,
       ){
         id,
@@ -31,32 +33,31 @@ const createSalida = gql`
       }
     }
   `;
-
-
 @Component({
-  selector: 'app-new-salida',
+  selector: 'app-productosalida',
   standalone: true,
   imports: [FormsModule, 
-    ReactiveFormsModule, 
-    RouterLink, 
+    ReactiveFormsModule, RouterLink, 
     NgClass, NgIf, 
-    AngularSvgIconModule, 
-    ButtonComponent,NgFor],
-  templateUrl: './new-salida.component.html',
-  styleUrl: './new-salida.component.scss'
+    AngularSvgIconModule, ButtonComponent, NgFor],
+  templateUrl: './productosalida.component.html',
+  //templateUrl: './show-adddetalle.component.htl',
+  styleUrl: './productosalida.component.scss'
 })
-export class NewSalidaComponent {
+export class ProductoSalidaComponent {
+
   form!: FormGroup;
   submitted = false;
   passwordTextType!: boolean;
   disabled: boolean = false;
   public productos: Producto[] = []
-  
+
   constructor(
     private readonly _formBuilder: FormBuilder,
     private readonly router: Router,
     private readonly apollo: Apollo
   ) {
+
     this.apollo.watchQuery({
       query: GET_ALL_PRODUCTO,
     }).valueChanges.subscribe(( result: any) => {
@@ -67,28 +68,18 @@ export class NewSalidaComponent {
       }
     });
 
-
-
-  }
-
-  
-  onClick() {
-    console.log('Button clicked');
   }
 
   ngOnInit(): void {
     this.form = this._formBuilder.group({
       fecha: ['', [Validators.required]],
       motivo: ['', [Validators.required]],
-      hora: ['', [Validators.required]],  
-      productoId: ['', [Validators.required]],  
+      hora: ['', [Validators.required]],
       cantidad: ['', [Validators.required]],   
+      productoId: ['', [Validators.required]],
     });
   }
 
-  get f() {
-    return this.form.controls;
-  }
 
   onSubmit(): void {
     if (this.form.invalid) {
@@ -96,21 +87,22 @@ export class NewSalidaComponent {
       return;
     }
     this.disabled = true;
-    const { fecha,motivo,hora,productoId,cantidad} = this.form.value;
+    const { motivo,fecha,hora,productoId,cantidad} = this.form.value;
     this.apollo.mutate({ 
-      mutation: createSalida,
-      variables: {fecha,motivo,hora,productoId,cantidad}
+      mutation: createEntradaManual,
+      variables: {motivo,fecha,hora,productoId,cantidad}
     }).subscribe(
       ({data}) => {
         if(data) {
-          this.router.navigate(['/taller/salida']);
+          this.router.navigate(['/taller/productos']);
         }        
       }
     );
+
   }
 
   cancelar(){
-    this.router.navigate(['/taller/salida']);
+    this.router.navigate(['/taller/productos']);
   }
 
 }

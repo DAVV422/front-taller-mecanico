@@ -66,6 +66,11 @@ const routes: Routes = [
     loadChildren: () => import('../salida/salida.module').then((m) => m.SalidaModule),
   },
   {
+    path: 'entrada',
+    component: LayoutComponent,    
+    loadChildren: () => import('../entrada/entrada.module').then((m) => m.EntradaModule),
+  },
+  {
     path: 'detallesalida',
     component: LayoutComponent,    
     loadChildren: () => import('../detalle-salida/detalle-salida.module').then((m) => m.DetalleSalidaModule),

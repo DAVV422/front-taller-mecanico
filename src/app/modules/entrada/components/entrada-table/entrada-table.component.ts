@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Apollo,gql } from 'apollo-angular';
 import { Entrada, Salida } from 'src/app/modules/inteface/modelos';
@@ -23,7 +23,7 @@ const getAllEntradas = gql`
     templateUrl: './entrada-table.component.html',
     styleUrl: './entrada-table.component.scss'
   })  
-export class EntradaTableComponent {
+export class EntradaTableComponent implements OnInit {
 
 
   public activeAuction: Entrada[] = [];
@@ -33,17 +33,20 @@ export class EntradaTableComponent {
     private router: Router,
     private readonly apollo: Apollo
   ) {        
-    this.apollo
-      .watchQuery({
-        query: getAllEntradas,        
-      }).valueChanges.subscribe(( result: any) => {
-        if(result.data.getAllEntradas != null){
-          this.activeAuction = result.data.getAllEntradas;  
-        }
-      });    
-    
+   
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.apollo
+    .watchQuery({
+      query: getAllEntradas,        
+    }).valueChanges.subscribe(( result: any) => {
+      if(result.data.getAllEntradas != null){
+        this.activeAuction = result.data.getAllEntradas;  
+      }
+    });    
+  console.log("cargando datos entrada")
+
+  }
 
   newEntrada(): void {
     this.router.navigate(['/taller/entrada/new']);

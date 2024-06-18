@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { DetalleVentaServicio } from '../../interfaces/venta.interface';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { DetalleVentaServicio, NotaVenta } from '../../interfaces/venta.interface';
 import { DetalleServiceTableItemComponent } from '../detalle-service-table-item/detalle-service-table-item.component';
 import { NgFor } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import { GET_ALL_DETALLE_VENTA_SERVICIO_OF_NOTA_VENTA } from 'src/app/core/constants/query';
 
@@ -13,16 +13,25 @@ import { GET_ALL_DETALLE_VENTA_SERVICIO_OF_NOTA_VENTA } from 'src/app/core/const
   templateUrl: './detalle-service-table.component.html',
   styleUrl: './detalle-service-table.component.scss'
 })
-export class DetalleServiceTableComponent {  
+export class DetalleServiceTableComponent implements OnInit, OnDestroy {  
   public activeAuction2: DetalleVentaServicio[] = [];
+  public id!: String;
+  public query!: any;
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private readonly apollo: Apollo
-  ) {}
+  ) {
+    this.route.params.subscribe(
+      (params: Params) => this.id = params['id']
+    );
+  }
 
-  ngOnInit(): void {
-    const notaVentaId: String = "666f67e84eecc74417220127";
+  ngOnInit(): void {    
+    console.log("inicia el componente");
+    const notaVentaId: String = this.id;
+    console.log(notaVentaId);
     this.apollo
       .watchQuery({
         query: GET_ALL_DETALLE_VENTA_SERVICIO_OF_NOTA_VENTA,
@@ -35,10 +44,11 @@ export class DetalleServiceTableComponent {
   }
 
   newDetalleServicio(): void {
-    this.router.navigate(['/taller/ventas/detalleServicio/new']);
+    const id = this.id
+    this.router.navigate(['/taller/ventas/detalleServicio/new', id]);
   }
 
-  ngOnDestroy(){
-
+  ngOnDestroy(): void {
+    this.query.unSubscribe()
   }
 }

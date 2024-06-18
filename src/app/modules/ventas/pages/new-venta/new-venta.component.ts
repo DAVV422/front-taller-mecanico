@@ -6,6 +6,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { Apollo } from 'apollo-angular';
 import { CREATE_NOTA_VENTA } from 'src/app/core/constants/mutation';
 import { ButtonComponent } from 'src/app/shared/components/button/button.component';
+import { NotaVenta } from '../../interfaces/venta.interface';
 
 @Component({
   selector: 'app-new-venta',
@@ -51,9 +52,10 @@ export class NewVentaComponent {
       mutation: CREATE_NOTA_VENTA,
       variables: { fecha, interes }
     }).subscribe(
-      ({ data }) => {
-        if(data) {          
-          this.router.navigate(['/taller/ventas/show']);
+      ( data: any ) => {
+        if(data) {
+          const notaVenta: NotaVenta = data.data.createNotaVenta;
+          this.router.navigate(['/taller/ventas/show', notaVenta.id]);
         }        
       }
     );

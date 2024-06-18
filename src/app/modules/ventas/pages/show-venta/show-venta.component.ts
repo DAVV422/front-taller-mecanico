@@ -30,7 +30,7 @@ export class ShowVentaComponent {
     let id: String = "";
     this.route.params.subscribe(
       (params: Params) => id = params['id']
-    );
+    )
     this.apollo
       .watchQuery({
         query: GET_NOTA_VENTA_BY_ID,        

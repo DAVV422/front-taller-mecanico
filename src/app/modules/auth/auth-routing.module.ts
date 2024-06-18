@@ -14,7 +14,7 @@ const routes: Routes = [
     component: AuthComponent,
     children: [
       { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
-      { path: 'sign-in', component: SignInComponent, data: { returnUrl: window.location.pathname } },      
+      { path: 'sign-in', component: SignInComponent},      
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path: 'new-password', component: NewPasswordComponent },
       { path: 'two-steps', component: TwoStepsComponent },

@@ -17,6 +17,7 @@ export interface DetalleVentaServicio {
 
 export interface DetalleVentaProducto {
     id: string;
+    cantidad: number;
     precioUnitario: number
     montoTotal: number;
     productoId: string;

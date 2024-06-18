@@ -7,6 +7,7 @@ import { ButtonComponent } from '../../../../shared/components/button/button.com
 import { catchError, of, tap } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { Apollo, gql } from 'apollo-angular';
+import { LOGIN } from 'src/app/core/constants/query';
 
 @Component({
   selector: 'app-sign-in',
@@ -76,16 +77,7 @@ export class SignInComponent implements OnInit {
 
     this.apollo
       .watchQuery({
-        query: gql`
-          query userLogin($email: String!, $password: String!) {
-            login(email: $email, password: $password){
-              id,
-              email,
-              nombreUsuario,
-              tipo              
-            }
-          }
-        `,
+        query: LOGIN,
         variables:{
           email: email,
           password: password
@@ -96,20 +88,5 @@ export class SignInComponent implements OnInit {
           this.router.navigate(['/taller'])     
         }
       });
-    
-    // this.authService.login(email, password)
-    //   .pipe(        
-    //     tap(resp => localStorage.setItem('token', resp.data.accessToken)),
-    //     tap(resp => localStorage.setItem('user', JSON.stringify(resp.data.User))),
-    //     catchError(err => of(
-    //       // this.showSnackbar('Usuario o Contraseña Incorrecta', 'Cerrar')
-    //     )),
-    //     tap(() => this.disabled = false),
-    //   ).subscribe( (resp:any) => {
-    //     if (!!resp) {
-    //       this.router.navigate(['/sci']);
-    //       // this.showSnackbar('Sesión iniciada correctamente', 'Cerrar');
-    //     }
-    //   });
   }
 }

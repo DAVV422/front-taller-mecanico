@@ -161,15 +161,16 @@ export const DELETE_SERVICIO = gql`
 `;
 
 export const CREATE_NOTA_VENTA = gql`
-  mutation createNotaVenta($fecha: String!, $interes: Float!) {
-    createNotaVenta(fecha: $fecha, interes: $interes) {
+  mutation createNotaVenta($fecha: String!, $interes: Float!, $clienteId: String!) {
+    createNotaVenta(fecha: $fecha, interes: $interes, clienteId: $clienteId) {
       id,
       fecha,
       total,
       saldo,
       interes,
       subtotal,
-      codigoSeguimiento
+      codigoSeguimiento,
+      clienteId
     }
   }
 `;

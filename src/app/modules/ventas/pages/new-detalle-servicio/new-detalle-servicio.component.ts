@@ -76,27 +76,29 @@ export class NewDetalleServicioComponent {
     this.disabled = true;
     const { vehiculoId, servicioId } = this.form.value;
     const notaVentaId = this.id;    
+    let detalleVentaServicioId = "";
     this.apollo.mutate({ 
       mutation: CREATE_DETALLE_VENTA_SERVICIO,
       variables: { vehiculoId, servicioId, notaVentaId }
     }).subscribe(      
       (data: any) => {
         console.log(data);
+        detalleVentaServicioId = data.createDetalleVentaServicio.id;
       }
     ).unsubscribe();
 
-    const estado = "Finalizado";
-    const fechaInicio = Date.now().toString();
-    const fechaFin = "";
-    const personalId = "";
-    const observacion = "Creado por detalle de Venta de Servicio"
+    const estado: String = "Finalizado";
+    const fechaInicio: String = Date.now().toString();
+    const fechaFin: String = "";
+    const personalId: String = "";
+    const observacion: String = "Creado por detalle de Venta de Servicio"
     console.log("ingresa");
     this.apollo.mutate({
       mutation: CREATE_ORDEN_DE_TRABAJO,
-      variables: { estado, fechaInicio, fechaFin, personalId, observacion}
+      variables: { estado, fechaInicio, fechaFin, personalId, observacion, detalleVentaServicioId }
     }).subscribe( (data) => {
       console.log(data);
-    })
+    }).unsubscribe();
     this.router.navigate(['/taller/ventas/show', this.id]);
   }
 

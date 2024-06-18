@@ -6,7 +6,7 @@ import { CurrencyPipe } from '@angular/common';
 @Component({
   selector: '[salida-table-item]',
   standalone: true,
-  imports: [],
+  imports: [AngularSvgIconModule, CurrencyPipe],
   templateUrl: './salida-item.component.html',
   styleUrl: './salida-item.component.scss'
 })

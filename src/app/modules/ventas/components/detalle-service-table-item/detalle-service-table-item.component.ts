@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { DetalleVentaServicio } from '../../interfaces/venta.interface';
 import { CurrencyPipe } from '@angular/common';
 import { AngularSvgIconModule } from 'angular-svg-icon';
@@ -12,14 +12,23 @@ import { DELETE_DETALLE_VENTA_SERVICIO } from 'src/app/core/constants/mutation';
   templateUrl: './detalle-service-table-item.component.html',
   styleUrl: './detalle-service-table-item.component.scss'
 })
-export class DetalleServiceTableItemComponent {
+export class DetalleServiceTableItemComponent implements OnDestroy {
   @Input() auctionServicio = <DetalleVentaServicio>{};  
+  public query!: any;
 
   constructor(
     private readonly apollo: Apollo
   ){}
+  ngOnDestroy(): void {
+    try {
+      this.query.unsubscribe();
+    } catch (error) {
+      console.log(error);
+    } 
+  }
+
   eliminar(id: String){
-    this.apollo.mutate({ 
+    this.query = this.apollo.mutate({ 
       mutation: DELETE_DETALLE_VENTA_SERVICIO,
       variables: { id }
     }).subscribe(
@@ -28,6 +37,7 @@ export class DetalleServiceTableItemComponent {
         console.log(data);
         if( data ) {
           console.log("Detalle Eliminado");
+          window.location.reload();
         }        
       }
     );    

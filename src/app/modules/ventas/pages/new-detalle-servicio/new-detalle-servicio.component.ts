@@ -4,23 +4,23 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { Apollo } from 'apollo-angular';
-import { CREATE_DETALLE_VENTA_PRODUCTO } from 'src/app/core/constants/mutation';
-import { GET_ALL_PRODUCTO } from 'src/app/core/constants/query';
-import { Producto } from 'src/app/modules/inteface/modelos';
+import { CREATE_DETALLE_VENTA_SERVICIO } from 'src/app/core/constants/mutation';
+import { GET_ALL_SERVICIOS } from 'src/app/core/constants/query';
+import { Servicio } from 'src/app/modules/servicios/interfaces/servicio.interface';
 import { ButtonComponent } from 'src/app/shared/components/button/button.component';
 
 @Component({
-  selector: 'app-new-detalle',
+  selector: 'app-new-detalle-servicio',
   standalone: true,
   imports: [FormsModule, ReactiveFormsModule, RouterLink, NgClass, NgIf, AngularSvgIconModule, ButtonComponent, NgFor],
-  templateUrl: './new-detalle.component.html',
-  styleUrl: './new-detalle.component.scss'
+  templateUrl: './new-detalle-servicio.component.html',
+  styleUrl: './new-detalle-servicio.component.scss'
 })
-export class NewDetalleComponent {
+export class NewDetalleServicioComponent {
   form!: FormGroup;
   submitted = false;  
   disabled: boolean = false;
-  public productos: Producto[] = [];
+  public servicios: Servicio[] = [];
   public id:String = "";
 
   constructor(
@@ -36,17 +36,16 @@ export class NewDetalleComponent {
 
   ngOnInit(): void {
     this.apollo.watchQuery({
-      query: GET_ALL_PRODUCTO
+      query: GET_ALL_SERVICIOS
     }).valueChanges.subscribe(( result: any) => {
       console.log(result)
-      if(result.data.getAllProducto != null){
-        this.productos = result.data.getAllProducto;
+      if(result.data.getAllServicios != null){
+        this.servicios = result.data.getAllServicios;
       }
     }); 
     this.form = this._formBuilder.group({
-      precioUnitario: ['', [Validators.required]],
-      cantidad: ['', [Validators.required]],
-      productoId: ['', [Validators.required]],           
+      monto: ['', [Validators.required]],
+      servicioId: ['', [Validators.required]],           
     });
 
     this.route.params.subscribe(
@@ -64,14 +63,13 @@ export class NewDetalleComponent {
       return;
     }
     this.disabled = true;
-    const { precioUnitario, cantidad, productoId } = this.form.value;
+    const { monto, servicioId } = this.form.value;
     const notaVentaId = this.id;
-    const montoTotal: number = cantidad * precioUnitario;
     this.apollo.mutate({ 
-      mutation: CREATE_DETALLE_VENTA_PRODUCTO,
-      variables: { precioUnitario, montoTotal, cantidad, notaVentaId, productoId }
+      mutation: CREATE_DETALLE_VENTA_SERVICIO,
+      variables: { monto, servicioId, notaVentaId }
     }).subscribe(
-      ({data}) => {
+      ({ data }) => {
         if(data) {
           this.router.navigate(['/taller/ventas/show', this.id]);
         }        

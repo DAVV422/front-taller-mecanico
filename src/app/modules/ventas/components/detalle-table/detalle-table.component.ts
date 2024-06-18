@@ -16,7 +16,7 @@ import { GET_ALL_DETALLE_VENTA_PRODUCTO_OF_NOTA_VENTA } from 'src/app/core/const
 export class DetalleTableComponent implements OnInit, OnDestroy {
   public activeAuction: DetalleVentaProducto[] = [];
   public id!: String;
-  public query!: any;
+  public query: any;
 
   constructor(
     private router: Router,
@@ -25,7 +25,7 @@ export class DetalleTableComponent implements OnInit, OnDestroy {
   ) {
     this.route.params.subscribe(
       (params: Params) => this.id = params['id']
-    );
+    ).unsubscribe();
   }
 
   ngOnInit(): void {
@@ -45,10 +45,15 @@ export class DetalleTableComponent implements OnInit, OnDestroy {
 
   newDetalleProducto(): void {
     const id: String = this.id;
+    console.log(id);
     this.router.navigate(['/taller/ventas/detalleProducto/new', id]);
   }
 
   ngOnDestroy(): void {
-    this.query.unSubscribe()
+    try {
+      this.query.unsubscribe();
+    } catch (error) {
+      console.log(error);
+    } 
   }
 }

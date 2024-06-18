@@ -28,11 +28,9 @@ export class DetalleServiceTableComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnInit(): void {    
-    console.log("inicia el componente");
+  ngOnInit(): void {
     const notaVentaId: String = this.id;
-    console.log(notaVentaId);
-    this.apollo
+    this.query = this.apollo
       .watchQuery({
         query: GET_ALL_DETALLE_VENTA_SERVICIO_OF_NOTA_VENTA,
         variables: { notaVentaId }
@@ -48,7 +46,11 @@ export class DetalleServiceTableComponent implements OnInit, OnDestroy {
     this.router.navigate(['/taller/ventas/detalleServicio/new', id]);
   }
 
-  ngOnDestroy(): void {
-    this.query.unSubscribe()
+  ngOnDestroy(): void {    
+    try {
+      this.query.unsubscribe();
+    } catch (error) {
+      console.log(error);
+    } 
   }
 }

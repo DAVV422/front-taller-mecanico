@@ -8,9 +8,6 @@ import { NgClass, NgIf } from '@angular/common';
 import { catchError, of, tap } from 'rxjs';
 import { Apollo, gql } from 'apollo-angular';
 
-const createUser = gql`
-
-`
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',

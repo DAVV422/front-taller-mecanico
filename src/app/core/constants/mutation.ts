@@ -367,10 +367,11 @@ export const DELETE_PRODUCTO = gql`
 `;
 
 export const CREATE_DETALLE_VENTA_SERVICIO = gql`
-  mutation createDetalleVentaServicio($monto: Float!, $servicioId: String!, $notaVentaId: String!) {
-    createDetalleVentaServicio(monto: $monto, servicioId: $servicioId, notaVentaId: $notaVentaId) {
+  mutation createDetalleVentaServicio($vehiculoId: String!, $servicioId: String!, $notaVentaId: String!) {
+    createDetalleVentaServicio(vehiculoId: $vehiculoId, servicioId: $servicioId, notaVentaId: $notaVentaId) {
       id,
       monto,
+      vehiculoId,
       servicioId,
       notaVentaId
     }

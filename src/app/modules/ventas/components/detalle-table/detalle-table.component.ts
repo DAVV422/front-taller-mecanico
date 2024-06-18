@@ -25,7 +25,7 @@ export class DetalleTableComponent implements OnInit, OnDestroy {
   ) {
     this.route.params.subscribe(
       (params: Params) => this.id = params['id']
-    ).unsubscribe();
+    );
   }
 
   ngOnInit(): void {

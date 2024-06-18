@@ -4,6 +4,12 @@ export interface Salida {
     motivo: string,
     hora: string
 }
+export interface Entrada {
+    id: string,
+    fecha: string,
+    motivo: string,
+    hora: string
+}
 export interface DetalleSalida {
     id: string,
     cantidad: number,

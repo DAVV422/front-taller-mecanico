@@ -8,6 +8,15 @@
         class="flex-none rounded-md bg-card px-4 py-2.5 text-xs font-semibold text-muted-foreground hover:bg-muted hover:text-foreground">
         Nuevo
       </button>
+
+      <button (click)="newVentaManual()"
+        class="flex-none rounded-md bg-card px-4 py-2.5 text-xs font-semibold text-muted-foreground hover:bg-muted hover:text-foreground">
+        Salida producto
+      </button>
+      <!--<button (click)="newSalidaManual()"
+        class="flex-none rounded-md bg-card px-4 py-2.5 text-xs font-semibold text-muted-foreground hover:bg-muted hover:text-foreground">
+         entrada producto
+      </button>  -->
     </div>
   
     <div class="relative overflow-x-auto">
@@ -27,9 +36,23 @@
         <tbody>
           <tr
             *ngFor="let auction of activeAuction"
-            [auction]="auction"
+            [auction]="auction"  (click)="selectProducto(auction)"
             producto-table-item
-            class="border-b border-dashed border-border hover:bg-card"></tr>
+            class="border-b border-dashed border-border 
+            hover:bg-card"></tr>  
+            
+           <!--<tr *ngFor="let producto of activeAuction" 
+            (click)="selectProducto(producto)" 
+            [class.selected]="producto === selectedProducto"
+            class="border-b border-dashed border-border hover:bg-card">
+          <td>{{ producto.nombre }}</td>
+          <td>{{ producto.descripcion }}</td>
+          <td>{{ producto.precio }}</td>
+          <td>{{ producto.stock }}</td>
+          <td class="text-center">
+            <button (click)="selectProducto(producto); $event.stopPropagation()">Seleccionar</button>
+          </td>  -->
+
         </tbody>
         <!--end::Table body-->
       </table>

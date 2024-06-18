@@ -75,22 +75,27 @@ export class Menu {
           label: 'proveedor',
           route: '/taller/proveedor',
         },
-        {
+        /*<{
           icon: 'assets/icons/heroicons/outline/folder.svg',
-          label: 'salida',
+          label: 'Salida Productos',
           route: '/taller/salida',
         },
         {
           icon: 'assets/icons/heroicons/outline/folder.svg',
+          label: 'Entrada productos',
+          route: '/taller/entrada',
+        }, */
+       /* {
+          icon: 'assets/icons/heroicons/outline/folder.svg',
           label: 'detallesalida',
           route: '/taller/detallesalida',
-        },
+        },*/
         {
           icon: 'assets/icons/heroicons/outline/folder.svg',
           label: 'Inventario',
           children: [
-            { label: 'Entradas Producto', route: '/taller/inventario/entradas' },
-            { label: 'Salidas Producto', route: '/taller/inventario/salidas' },            
+            { label: 'Entradas Producto', route: '/taller/entrada' },
+            { label: 'Salidas Producto', route: '/taller/salida' },            
           ],      
         },                
       ],

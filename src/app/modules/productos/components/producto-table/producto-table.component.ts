@@ -27,6 +27,7 @@ const getAllProducto = gql`
 export class ProductoTableComponent {
   public activeAuction: Producto[] = [];
   public producto: Producto[] = [];
+  public selectedProducto: Producto | null = null;
 
   constructor(
     private router: Router,
@@ -49,4 +50,15 @@ export class ProductoTableComponent {
     this.router.navigate(['/taller/productos/new']);
   }
 
+  newVentaManual(): void {
+    this.router.navigate(['/taller/productos/productosalida']);
+  }
+
+  newSalidaManual(): void {
+    this.router.navigate(['/taller/productos/productosalida']);
+  }
+
+  selectProducto(producto: Producto): void {
+    this.selectedProducto = producto;
+  }
 }

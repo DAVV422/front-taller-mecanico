@@ -7,13 +7,6 @@ import { Apollo } from 'apollo-angular';
 import { CREATE_NOTA_VENTA } from 'src/app/core/constants/mutation';
 import { ButtonComponent } from 'src/app/shared/components/button/button.component';
 
-
-export interface DataVenta {
-  createNotaVenta: {
-    id: String
-  }
-}
-
 @Component({
   selector: 'app-new-venta',
   standalone: true,
@@ -23,8 +16,7 @@ export interface DataVenta {
 })
 export class NewVentaComponent {
   form!: FormGroup;
-  submitted = false;
-  passwordTextType!: boolean;
+  submitted = false;  
   disabled: boolean = false;
 
   constructor(
@@ -60,8 +52,7 @@ export class NewVentaComponent {
       variables: { fecha, interes }
     }).subscribe(
       ({ data }) => {
-        if(data) {
-          // dataVenta: DataVenta = data;
+        if(data) {          
           this.router.navigate(['/taller/ventas/show']);
         }        
       }

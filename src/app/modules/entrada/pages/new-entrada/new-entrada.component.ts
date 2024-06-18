@@ -1,9 +1,10 @@
 import { NgClass, NgFor, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { Apollo, gql } from 'apollo-angular';
+import { Subscription } from 'rxjs';
 import { GET_ALL_PRODUCTO } from 'src/app/core/constants/query';
 import { Producto } from 'src/app/modules/inteface/modelos';
 import { ButtonComponent } from 'src/app/shared/components/button/button.component';
@@ -40,20 +41,22 @@ const createEntrada = gql`
   templateUrl: './new-entrada.component.html',
   styleUrl: './new-entrada.component.scss'
 })
-export class NewEntradaComponent {
+export class NewEntradaComponent implements OnInit, OnDestroy{
   form!: FormGroup;
   submitted = false;
   passwordTextType!: boolean;
   disabled: boolean = false;
   public productos: Producto[] = []
   
+  private querySubscription: Subscription | undefined;
+
   constructor(
     private readonly _formBuilder: FormBuilder,
     private readonly router: Router,
     private readonly apollo: Apollo
   ) {
 
-    this.apollo.watchQuery({
+    this.querySubscription= this.apollo.watchQuery({
       query: GET_ALL_PRODUCTO,
     }).valueChanges.subscribe(( result: any) => {
       console.log(result)
@@ -106,6 +109,14 @@ export class NewEntradaComponent {
 
   cancelar(){
     this.router.navigate(['/taller/entrada']);
+  }
+
+  
+  ngOnDestroy(): void {
+    // Aquí limpiamos las suscripciones y liberamos recursos
+    if (this.querySubscription) {
+      this.querySubscription.unsubscribe();
+    }
   }
 
 }

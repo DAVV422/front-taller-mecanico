@@ -14,7 +14,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'list', pathMatch: 'full' },
       { path: 'list', component: ListOrdenTrabajoComponent },
       { path: 'new', component: NewOrdenTrabajoComponent },
-      { path: 'edit', component: EditOrdenTrabajoComponent },
+      { path: 'edit/:id', component: EditOrdenTrabajoComponent },
       { path: 'show', component: ShowOrdenTrabajoComponent },
       { path: '**', redirectTo: 'errors/404' },
     ],

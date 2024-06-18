@@ -7,6 +7,7 @@ import { UserService } from '../../services/user.service';
 import { NgClass, NgIf } from '@angular/common';
 import { catchError, of, tap } from 'rxjs';
 import { Apollo, gql } from 'apollo-angular';
+import { CREATE_USUARIO } from 'src/app/core/constants/mutation';
 
 @Component({
   selector: 'app-sign-up',
@@ -23,8 +24,7 @@ export class SignUpComponent implements OnInit {
 
   constructor(
     private readonly _formBuilder: FormBuilder, 
-    private readonly router: Router,    
-    private userService: UserService,
+    private readonly router: Router,
     private apollo: Apollo
   ) {}
 
@@ -34,13 +34,10 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this._formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      name: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      cellphone: ['', [Validators.required]],
-      birthdate: ['', [Validators.required]],
-      grade: ['', [Validators.required]],
-      password: ['', Validators.required],
+      nombreUsuario: ['', [Validators.required]],
+      email: ['', [Validators.required], Validators.email],
+      password: ['', [Validators.required]],
+      tipo: ['', [Validators.required]]
     });
   }
 
@@ -58,7 +55,17 @@ export class SignUpComponent implements OnInit {
       return;
     }
     this.disabled = true;
-    const { email, password, name, lastName, cellphone, birthdate, grade } = this.form.value;       
+    const { nombreUsuario, email, password, tipo } = this.form.value;       
+    this.apollo.mutate({ 
+      mutation: CREATE_USUARIO,
+      variables: { nombreUsuario, email, password, tipo }
+    }).subscribe(
+      ( data: any ) => {
+        if(data) {
+          this.router.navigate(['/taller/users']);
+        }        
+      }
+    );
   }
 
   cancelar(){

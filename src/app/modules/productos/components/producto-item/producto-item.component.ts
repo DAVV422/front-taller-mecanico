@@ -1,10 +1,12 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component,Input } from '@angular/core';
-import { Producto } from 'src/app/modules/inteface/modelos';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { Producto } from '../../../../modules/inteface/modelos';
 
 @Component({
   selector: '[producto-table-item]',
   standalone: true,
-  imports: [],
+  imports: [AngularSvgIconModule, CurrencyPipe],
   templateUrl: './producto-item.component.html',
   styleUrl: './producto-item.component.scss'
 })

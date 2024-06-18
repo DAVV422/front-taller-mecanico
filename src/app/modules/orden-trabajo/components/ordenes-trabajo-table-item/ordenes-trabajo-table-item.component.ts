@@ -5,6 +5,7 @@ import { OrdenDeTrabajo } from '../../interfaces/orden-trabajo.interface';
 import { Personal } from 'src/app/modules/user/interfaces/user.interface';
 import { Apollo } from 'apollo-angular';
 import { GET_PERSONAL_BY_ID } from '../../../../core/constants/query';
+import { Router } from '@angular/router';
 
 @Component({
   selector: '[ordenes-trabajo-table-item]',
@@ -18,7 +19,8 @@ export class OrdenesTrabajoTableItemComponent {
   public personal = <Personal>{};
 
   constructor(
-    private readonly apollo: Apollo
+    private readonly apollo: Apollo,
+    private readonly router: Router
   ){
     this.apollo.watchQuery({
       query: GET_PERSONAL_BY_ID,
@@ -31,5 +33,9 @@ export class OrdenesTrabajoTableItemComponent {
         this.personal = result.data.getPersonalById;  
       }
     });
+  }
+
+  edit(){
+    this.router.navigate(['/taller/orden-trabajo/edit', this.auction.id]);
   }
 }

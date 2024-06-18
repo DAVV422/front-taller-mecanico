@@ -1,1 +1,13 @@
-<p>show-venta works!</p>
+<div class="mx-auto px-4 py-4 sm:px-8 lg:container">
+    <!-- Header -->
+    <app-detalle-header [auction]="notaVenta"></app-detalle-header>
+    <!-- end Header -->
+  
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">      
+      <div detalle-table class="md:col-span-2 xl:col-span-3"></div>
+    </div>
+
+    <div class="grid grid-cols-1 mt-4 gap-4 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">      
+        <div detalle-service-table class="md:col-span-2 xl:col-span-3"></div>
+      </div>
+  </div>

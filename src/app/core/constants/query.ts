@@ -435,3 +435,180 @@ export const GET_ALL_ORDENES_DE_TRABAJO_BY_PERSONAL_ID = gql`
     }
   }
 `;
+
+
+export const GET_ALL_NOTAS_COMPRA = gql`
+  query getAllNotasCompra {
+    getAllNotasCompra {
+      id,
+      fecha,
+      montoTotal,
+      personalId
+    }
+  }
+`;
+
+export const GET_NOTA_COMPRA_BY_ID = gql`
+  query getNotaCompraById($id: ID!) {
+    getNotaCompraById(id: $id) {
+      id,
+      fecha,
+      montoTotal,
+      personalId
+    }
+  }
+`;
+
+// Entrada Queries
+
+export const GET_ALL_ENTRADAS = gql`
+  query getAllEntradas {
+    getAllEntradas {
+      id,
+      fecha,
+      motivo,
+      hora
+    }
+  }
+`;
+
+export const GET_ENTRADA_BY_ID = gql`
+  query getEntradaById($id: ID!) {
+    getEntradaById(id: $id) {
+      id,
+      fecha,
+      motivo,
+      hora
+    }
+  }
+`;
+
+// NotaDevolucion Queries
+
+export const GET_ALL_NOTAS_DEVOLUCION = gql`
+  query getAllNotasDevolucion {
+    getAllNotasDevolucion {
+      id,
+      fecha,
+      motivo,
+      montoTotal,
+      notaVentaId
+    }
+  }
+`;
+
+export const GET_NOTA_DEVOLUCION_BY_ID = gql`
+  query getNotaDevolucionById($id: ID!) {
+    getNotaDevolucionById(id: $id) {
+      id,
+      fecha,
+      motivo,
+      montoTotal,
+      notaVentaId
+    }
+  }
+`;
+
+// DetalleCompra Queries
+
+export const GET_DETALLE_COMPRA_BY_ID = gql`
+  query getDetalleCompraById($id: ID!) {
+    getDetalleCompraById(id: $id) {
+      id,
+      monto,
+      cantidad,
+      productoId,
+      notaCompraId
+    }
+  }
+`;
+
+export const GET_ALL_DETALLE_COMPRA_OF_NOTA_COMPRA = gql`
+  query getAllDetalleCompraOfNotaCompra($notaCompraId: ID!) {
+    getAllDetalleCompraOfNotaCompra(notaCompraId: $notaCompraId) {
+      id,
+      monto,
+      cantidad,
+      productoId,
+      notaCompraId
+    }
+  }
+`;
+
+// DetalleDevolucion Queries
+
+export const GET_DETALLE_DEVOLUCION_BY_ID = gql`
+  query getDetalleDevolucionById($id: ID!) {
+    getDetalleDevolucionById(id: $id) {
+      id,
+      cantidad,
+      monto,
+      productoId,
+      notaDevolucionId
+    }
+  }
+`;
+
+export const GET_ALL_DETALLE_DEVOLUCION_OF_NOTA_DEVOLUCION = gql`
+  query getAllDetalleDevolucionOfNotaDevolucion($notaDevolucionId: ID!) {
+    getAllDetalleDevolucionOfNotaDevolucion(notaDevolucionId: $notaDevolucionId) {
+      id,
+      cantidad,
+      monto,
+      productoId,
+      notaDevolucionId
+    }
+  }
+`;
+
+// DetalleEntrada Queries
+
+export const GET_DETALLE_ENTRADA_BY_ID = gql`
+  query getDetalleEntradaById($id: ID!) {
+    getDetalleEntradaById(id: $id) {
+      id,
+      cantidad,
+      productoId,
+      notaEntradaId
+    }
+  }
+`;
+
+export const GET_ALL_DETALLE_ENTRADA_OF_NOTA_ENTRADA = gql`
+  query getAllDetalleEntradaOfNotaEntrada($notaEntradaId: ID!) {
+    getAllDetalleEntradaOfNotaEntrada(notaEntradaId: $notaEntradaId) {
+      id,
+      cantidad,
+      productoId,
+      notaEntradaId
+    }
+  }
+`;
+
+// DetalleVentaProducto Queries
+
+export const GET_DETALLE_VENTA_PRODUCTO_BY_ID = gql`
+  query getDetalleVentaProductoById($id: ID!) {
+    getDetalleVentaProductoById(id: $id) {
+      id,
+      precioUnitario,
+      cantidad,
+      montoTotal,
+      notaVentaId,
+      productoId
+    }
+  }
+`;
+
+export const GET_ALL_DETALLE_VENTA_PRODUCTO_OF_NOTA_VENTA = gql`
+  query getAllDetalleVentaProductoOfNotaVenta($notaVentaId: ID!) {
+    getAllDetalleVentaProductoOfNotaVenta(notaVentaId: $notaVentaId) {
+      id,
+      precioUnitario,
+      cantidad,
+      montoTotal,
+      notaVentaId,
+      productoId
+    }
+  }
+`;

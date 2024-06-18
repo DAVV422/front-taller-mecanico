@@ -3,27 +3,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AngularSvgIconModule } from 'angular-svg-icon';
-import { Apollo ,gql } from 'apollo-angular';
+import { Apollo } from 'apollo-angular';
+import { CREATE_NOTA_VENTA } from 'src/app/core/constants/mutation';
 import { ButtonComponent } from 'src/app/shared/components/button/button.component';
 
-const createVenta = gql`
-      mutation createSalida(
-        $fecha:String!, 
-        $motivo:String!, 
-        $hora:String!, 	
-      ) {
-      createSalida(
-        fecha:$fecha,
-        motivo:$motivo,
-        hora:$hora,
-      ){
-        id,
-        fecha,
-        motivo,
-        hora
-      }
-    }
-  `;
 @Component({
   selector: 'app-new-venta',
   standalone: true,
@@ -33,8 +16,9 @@ const createVenta = gql`
 })
 export class NewVentaComponent {
   form!: FormGroup;
-  submitted = false;
+  submitted = false;  
   disabled: boolean = false;
+
   constructor(
     private readonly _formBuilder: FormBuilder,
     private readonly router: Router,
@@ -47,10 +31,8 @@ export class NewVentaComponent {
 
   ngOnInit(): void {
     this.form = this._formBuilder.group({
-      nombre: ['', [Validators.required]],
-      apellido: ['', [Validators.required]],
-      nit: [''],
-      celular: ['', [Validators.required]],            
+      fecha: ['', [Validators.required]],
+      interes: ['', [Validators.required]],        
     });
   }
 
@@ -64,20 +46,20 @@ export class NewVentaComponent {
       return;
     }
     this.disabled = true;
-    const { nombre, apellido, nit, celular } = this.form.value;
+    const { fecha, interes } = this.form.value;
     this.apollo.mutate({ 
-      mutation: createVenta,
-      variables: { nombre, apellido, nit, celular }
+      mutation: CREATE_NOTA_VENTA,
+      variables: { fecha, interes }
     }).subscribe(
-      ({data}) => {
-        if(data) {
-          this.router.navigate(['/taller/users/clientes']);
+      ({ data }) => {
+        if(data) {          
+          this.router.navigate(['/taller/ventas/show']);
         }        
       }
     );
   }
 
   cancelar(){
-    this.router.navigate(['/taller/users/clientes']);
+    this.router.navigate(['/taller/ventas']);
   }
 }

@@ -15,7 +15,7 @@ const routes: Routes = [
       { path: 'list', component: ListVentaComponent },
       { path: 'new', component: NewVentaComponent },
       { path: 'edit', component: EditVentaComponent },
-      { path: 'show', component: ShowVentaComponent },
+      { path: 'show/:id', component: ShowVentaComponent },
       { path: '**', redirectTo: 'errors/404' },
     ],
   },

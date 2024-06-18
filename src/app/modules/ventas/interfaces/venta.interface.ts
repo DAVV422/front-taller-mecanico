@@ -14,3 +14,11 @@ export interface DetalleVentaServicio {
     servicioId: string;
     notaVentaId: string;
 }
+
+export interface DetalleVentaProducto {
+    id: string;
+    precioUnitario: number
+    montoTotal: number;
+    productoId: string;
+    notaVentaId: string;
+}

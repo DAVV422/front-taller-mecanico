@@ -161,8 +161,8 @@ export const DELETE_SERVICIO = gql`
 `;
 
 export const CREATE_NOTA_VENTA = gql`
-  mutation createNotaVenta($fecha: String!, $total: Float!, $saldo: Float!, $interes: Float!) {
-    createNotaVenta(fecha: $fecha, total: $total, saldo: $saldo, interes: $interes) {
+  mutation createNotaVenta($fecha: String!, $interes: Float!) {
+    createNotaVenta(fecha: $fecha, interes: $interes) {
       id,
       fecha,
       total,
@@ -175,8 +175,8 @@ export const CREATE_NOTA_VENTA = gql`
 `;
 
 export const UPDATE_NOTA_VENTA = gql`
-  mutation updateNotaVenta($id: ID!, $fecha: String, $total: Float, $saldo: Float, $interes: Float) {
-    updateNotaVenta(id: $id, fecha: $fecha, total: $total, saldo: $saldo, interes: $interes) {
+  mutation updateNotaVenta($id: ID!, $fecha: String, $interes: Float) {
+    updateNotaVenta(id: $id, fecha: $fecha, interes: $interes) {
       id,
       fecha,
       total,
@@ -480,5 +480,175 @@ export const UPDATE_ORDEN_DE_TRABAJO = gql`
 export const DELETE_ORDEN_DE_TRABAJO = gql`
   mutation deleteOrdenDeTrabajo($id: ID!) {
     deleteOrdenDeTrabajo(id: $id)
+  }
+`;
+
+export const CREATE_NOTA_COMPRA = gql`
+  mutation createNotaCompra($fecha: String!, $montoTotal: Float!, $personalId: String!) {
+    createNotaCompra(fecha: $fecha, montoTotal: $montoTotal, personalId: $personalId) {
+      id,
+      fecha,
+      montoTotal,
+      personalId
+    }
+  }
+`;
+
+export const UPDATE_NOTA_COMPRA = gql`
+  mutation updateNotaCompra($id: ID!, $fecha: String, $montoTotal: Float, $personalId: String) {
+    updateNotaCompra(id: $id, fecha: $fecha, montoTotal: $montoTotal, personalId: $personalId) {
+      id,
+      fecha,
+      montoTotal,
+      personalId
+    }
+  }
+`;
+
+export const DELETE_NOTA_COMPRA = gql`
+  mutation deleteNotaCompra($id: ID!) {
+    deleteNotaCompra(id: $id)
+  }
+`;
+
+// Entrada Mutations
+
+export const CREATE_ENTRADA = gql`
+  mutation createEntrada($fecha: String!, $motivo: String!, $hora: String!) {
+    createEntrada(fecha: $fecha, motivo: $motivo, hora: $hora) {
+      id,
+      fecha,
+      motivo,
+      hora
+    }
+  }
+`;
+
+export const UPDATE_ENTRADA = gql`
+  mutation updateEntrada($id: ID!, $fecha: String, $motivo: String, $hora: String) {
+    updateEntrada(id: $id, fecha: $fecha, motivo: $motivo, hora: $hora) {
+      id,
+      fecha,
+      motivo,
+      hora
+    }
+  }
+`;
+
+export const DELETE_ENTRADA = gql`
+  mutation deleteEntrada($id: ID!) {
+    deleteEntrada(id: $id)
+  }
+`;
+
+// NotaDevolucion Mutations
+
+export const CREATE_NOTA_DEVOLUCION = gql`
+  mutation createNotaDevolucion($fecha: String!, $motivo: String!, $montoTotal: Float!, $notaVentaId: String!) {
+    createNotaDevolucion(fecha: $fecha, motivo: $motivo, montoTotal: $montoTotal, notaVentaId: $notaVentaId) {
+      id,
+      fecha,
+      motivo,
+      montoTotal,
+      notaVentaId
+    }
+  }
+`;
+
+export const UPDATE_NOTA_DEVOLUCION = gql`
+  mutation updateNotaDevolucion($id: ID!, $fecha: String, $motivo: String, $montoTotal: Float, $notaVentaId: String) {
+    updateNotaDevolucion(id: $id, fecha: $fecha, motivo: $motivo, montoTotal: $montoTotal, notaVentaId: $notaVentaId) {
+      id,
+      fecha,
+      motivo,
+      montoTotal,
+      notaVentaId
+    }
+  }
+`;
+
+export const DELETE_NOTA_DEVOLUCION = gql`
+  mutation deleteNotaDevolucion($id: ID!) {
+    deleteNotaDevolucion(id: $id)
+  }
+`;
+
+// DetalleCompra Mutations
+
+export const CREATE_DETALLE_COMPRA = gql`
+  mutation createDetalleCompra($monto: Float!, $cantidad: Int!, $productoId: ID!, $notaCompraId: ID!) {
+    createDetalleCompra(monto: $monto, cantidad: $cantidad, productoId: $productoId, notaCompraId: $notaCompraId) {
+      id,
+      monto,
+      cantidad,
+      productoId,
+      notaCompraId
+    }
+  }
+`;
+
+export const DELETE_DETALLE_COMPRA = gql`
+  mutation deleteDetalleCompra($id: ID!) {
+    deleteDetalleCompra(id: $id)
+  }
+`;
+
+// DetalleDevolucion Mutations
+
+export const CREATE_DETALLE_DEVOLUCION = gql`
+  mutation createDetalleDevolucion($cantidad: Int!, $monto: Float!, $productoId: ID!, $notaDevolucionId: ID!) {
+    createDetalleDevolucion(cantidad: $cantidad, monto: $monto, productoId: $productoId, notaDevolucionId: $notaDevolucionId) {
+      id,
+      cantidad,
+      monto,
+      productoId,
+      notaDevolucionId
+    }
+  }
+`;
+
+export const DELETE_DETALLE_DEVOLUCION = gql`
+  mutation deleteDetalleDevolucion($id: ID!) {
+    deleteDetalleDevolucion(id: $id)
+  }
+`;
+
+// DetalleEntrada Mutations
+
+export const CREATE_DETALLE_ENTRADA = gql`
+  mutation createDetalleEntrada($cantidad: Int!, $productoId: ID!, $notaEntradaId: ID!) {
+    createDetalleEntrada(cantidad: $cantidad, productoId: $productoId, notaEntradaId: $notaEntradaId) {
+      id,
+      cantidad,
+      productoId,
+      notaEntradaId
+    }
+  }
+`;
+
+export const DELETE_DETALLE_ENTRADA = gql`
+  mutation deleteDetalleEntrada($id: ID!) {
+    deleteDetalleEntrada(id: $id)
+  }
+`;
+
+// DetalleVentaProducto Mutations
+
+export const CREATE_DETALLE_VENTA_PRODUCTO = gql`
+  mutation createDetalleVentaProducto($precioUnitario: Float!, $cantidad: Int!, $montoTotal: Float!, $notaVentaId: ID!, $productoId: ID!) {
+    createDetalleVentaProducto(precioUnitario: $precioUnitario, cantidad: $cantidad, montoTotal: $montoTotal, notaVentaId: $notaVentaId, productoId: $productoId) {
+      id,
+      precioUnitario,
+      cantidad,
+      montoTotal,
+      notaVentaId,
+      productoId
+    }
+  }
+`;
+
+export const DELETE_DETALLE_VENTA_PRODUCTO = gql`
+  mutation deleteDetalleVentaProducto($id: ID!) {
+    deleteDetalleVentaProducto(id: $id)
   }
 `;
